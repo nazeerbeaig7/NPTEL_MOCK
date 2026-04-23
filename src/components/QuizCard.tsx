@@ -12,6 +12,7 @@ interface QuizCardProps {
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
 const TIMER_SECONDS = 120;
+const TRANSITION_DELAY = 5000; // 5 seconds
 
 export default function QuizCard({
   question,
@@ -53,7 +54,7 @@ export default function QuizCard({
 
   function handleTimeUp() {
     setSelected("__timeout__");
-    autoAdvanceRef.current = setTimeout(() => onAnswer(false), 1500);
+    autoAdvanceRef.current = setTimeout(() => onAnswer(false), TRANSITION_DELAY);
   }
 
   function handleSelect(optionIndex: number) {
@@ -64,7 +65,7 @@ export default function QuizCard({
     setSelected(selectedLetter);
 
     const correct = selectedLetter === question.answer;
-    autoAdvanceRef.current = setTimeout(() => onAnswer(correct), 1500);
+    autoAdvanceRef.current = setTimeout(() => onAnswer(correct), TRANSITION_DELAY);
   }
 
   function getOptionStyle(optionIndex: number): string {
